@@ -17,15 +17,15 @@ public class SessionUserResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        // @SessionUser User user
+        // @SessionUser LoginUser loginUser
         boolean isAnnotated = parameter.getParameterAnnotation(SessionUser.class) != null;
-        boolean isClass = User.class.equals(parameter.getParameterType());
+        boolean isClass = LoginUser.class.equals(parameter.getParameterType());
         return isAnnotated && isClass;
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        return sessionUser;
+        LoginUser LoginUser = (LoginUser) session.getAttribute("sessionUser");
+        return LoginUser;
     }
 }
